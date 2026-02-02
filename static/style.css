@@ -1,0 +1,180 @@
+/* 🌐 Global */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 📦 Dashboard Card */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.6s ease;
+}
+
+/* 🧭 Headings */
+h2, h3 {
+  text-align: center;
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+
+
+/* 📝 Inputs */
+input {
+  padding: 11px 14px;
+  margin: 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+
+/* 🔘 Buttons */
+.professional-btn {
+  background-color: #2563eb;   /* Blue – Update */
+  color: #ffffff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.35);
+  transition: all 0.25s ease;
+}
+
+.professional-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.professional-btn:active {
+  background-color: #1e40af;
+}
+
+/* 🔴 Delete Button */
+.delete-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.35);
+  transition: all 0.25s ease;
+}
+
+.delete-btn:hover {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.delete-btn:active {
+  background-color: #991b1b;
+}
+
+
+/* 📊 Table Wrapper */
+.table-wrapper {
+  margin-top: 24px;
+  overflow-x: auto;
+  border-radius: 14px;
+}
+
+/* 📋 Table */
+table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* 🧾 Table cells */
+th, td {
+  padding: 14px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* 🟦 Table Head */
+th {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ⬜ Rows */
+tbody tr {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: #f1f5f9;
+}
+
+tbody tr:hover {
+  background: #e0e7ff;
+}
+
+
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+  input, button {
+    width: 100%;
+  }
+
+  table {
+    min-width: 600px;
+  }
+}
+
+/* ✨ Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#loadBtn {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+#loadBtn:hover {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+}
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management</title>
+
+  <!-- Link CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>Student List</h2>
+<button id="loadBtn"
+       
+        onclick="loadStudents()">
+  Load Students
+</button>
+
+
+  <h3>Add Student</h3>
+
+  <input type="text" id="name" placeholder="Enter name">
+  <input type="text" id="course" placeholder="Enter course">
+  <button onclick="addStudent()">Add</button>
+
+  <p id="msg"></p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="studentTable"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+function loadStudents() {
+  fetch("/students")
+    .then(res => res.json())
+    .then(data => {
+      let rows = "";
+      data.students.forEach(s => {
+        rows += `
+          <tr>
+            <td>${s.id}</td>
+            <td>${s.name}</td>
+            <td>${s.course}</td>
+           <td>
+                <button class="professional-btn"
+                  onclick='updateStudent(${s.id}, ${JSON.stringify(s.name)}, ${JSON.stringify(s.course)})'>
+                  Update
+                </button>
+
+                <button class="delete-btn"
+                  onclick="deleteStudent(${s.id})">
+                  Delete
+                </button>
+              </td>
+
+          </tr>
+        `;
+      });
+      document.getElementById("studentTable").innerHTML = rows;
+    });
+}
+
+function addStudent() {
+  const name = document.getElementById("name").value;
+  const course = document.getElementById("course").value;
+
+  fetch("/students", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, course })
+  }).then(() => {
+    document.getElementById("name").value = "";
+    document.getElementById("course").value = "";
+    loadStudents();
+  });
+}
+
+function deleteStudent(id) {
+  fetch(`/students/${id}`, { method: "DELETE" })
+    .then(() => loadStudents());
+}
+
+function updateStudent(id, oldName, oldCourse) {
+  const name = prompt("Enter new name", oldName);
+  const course = prompt("Enter new course", oldCourse);
+  if (!name || !course) return;
+
+  fetch(`/students/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, course })
+  }).then(() => loadStudents());
+}
+
+window.onload = loadStudents;
+</script>
+
+</body>
+</html>
