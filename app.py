@@ -26,7 +26,7 @@ def create_table():
 create_table()
 
 # ---------- ROUTES ----------
-@app.route("/index")
+@app.route("/")
 def ui():
     return render_template("index.html")
 
@@ -86,3 +86,4 @@ def delete_student(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
